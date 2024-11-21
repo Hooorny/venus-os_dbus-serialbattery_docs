@@ -202,7 +202,7 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
 
 > 🌼🔗 For connecting one oder more devices via CAN-BUS 👇
 
-1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at the `JKBMS_PB_CAN_DEVICE_ADDRESSES` parameter.
+1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at the `JKBMS_PB_CAN_DEVICE_ADDRESSES` parameter. 
 
   For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `JKBMS_PB_CAN_DEVICE_ADDRESSES = 0x01, 0x02, 0x03`.
 
