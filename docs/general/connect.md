@@ -198,6 +198,45 @@ See also [JK BMS JK-B2A8S20P RS-485 port / connector](https://github.com/Louisvd
 
 See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery driver?](https://github.com/Louisvdw/dbus-serialbattery/discussions/969#discussioncomment-10987091).
 
+## JKBMS PB Model (also know as JK Inverter BMS) CAN Connection
+
+> 🌼🔗 For connecting one oder more devices via CAN-BUS 👇
+
+1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at
+  the `JKBMS_PB_CAN_DEVICE_ADDRESSES` parameter.
+
+  For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `JKBMS_PB_CAN_DEVICE_ADDRESSES = 0x01, 0x02, 0x03`.
+
+  | Dip switch position | device address |
+  | :---:               | :---:          |
+  | `1 2 3 4`           |                |
+  | `_ _ _ _`           | `0x00`         |
+  | `‾ _ _ _`           | `0x01`         |
+  | `_ ‾ _ _`           | `0x02`         |
+  | `‾ ‾ _ _`           | `0x03`         |
+  | `_ _ ‾ _`           | `0x04`         |
+  | `‾ _ ‾ _`           | `0x05`         |
+  | `_ ‾ ‾ _`           | `0x06`         |
+  | `‾ ‾ ‾ _`           | `0x07`         |
+  | `_ _ _ ‾`           | `0x08`         |
+  | `‾ _ _ ‾`           | `0x09`         |
+  | `_ ‾ _ ‾`           | `0x0A`         |
+  | `‾ ‾ _ ‾`           | `0x0B`         |
+  | `_ _ ‾ ‾`           | `0x0C`         |
+  | `‾ _ ‾ ‾`           | `0x0D`         |
+  | `_ ‾ ‾ ‾`           | `0x0E`         |
+  | `‾ ‾ ‾ ‾`           | `0x0F`         |
+
+2. Use a ethernet/CAT cable to connect all batteries via the CAN
+
+3. Connect the first battery to your Cerbo/Raspberry using the RS485 to USB cable that came with the BMS.
+
+4. In the JKBMS App ensure that the CAN Protocol is set to `JK BMS CAN Protocol (250K) V2.0` or `JK BMS CAN Protocol (500K) V2.0` depending on the `CAN_SPEED` value in `config.ini`.
+
+5. Reboot the system to apply the changes.
+
+See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery driver?](https://github.com/Louisvdw/dbus-serialbattery/discussions/969#discussioncomment-10987091).
+
 ## Renogy
 
 > 🌼🔗 Only if you want to connect multiple Renogy BMS to the same RS485 adapter 👇
