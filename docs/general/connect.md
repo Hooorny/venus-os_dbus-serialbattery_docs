@@ -202,9 +202,9 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
 
 > 🌼🔗 For connecting one oder more devices via CAN-BUS 👇
 
-1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at the `JKBMS_PB_CAN_DEVICE_ADDRESSES` parameter. 
+1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at the `DEVICE_ADDRESSES` parameter. 
 
-  For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `JKBMS_PB_CAN_DEVICE_ADDRESSES = 0x01, 0x02, 0x03`.
+  For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `DEVICE_ADDRESSES = 0x01, 0x02, 0x03`.
 
   | Dip switch position | device address |
   | :---:               | :---:          |
@@ -226,13 +226,11 @@ See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery 
   | `_ ‾ ‾ ‾`           | `0x0E`         |
   | `‾ ‾ ‾ ‾`           | `0x0F`         |
 
-2. Use a ethernet/CAT cable to connect all batteries via the CAN
+2. Use a [TYPE-A cable](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable#pin-out) to connect all batteries via the CAN
 
-3. Connect the first battery to your Cerbo/Raspberry using the RS485 to USB cable that came with the BMS.
+3. In the JKBMS App ensure that the CAN Protocol is set to `JK BMS CAN Protocol (250K) V2.0` or `JK BMS CAN Protocol (500K) V2.0` depending on the `CAN_SPEED` value in `config.ini`.
 
-4. In the JKBMS App ensure that the CAN Protocol is set to `JK BMS CAN Protocol (250K) V2.0` or `JK BMS CAN Protocol (500K) V2.0` depending on the `CAN_SPEED` value in `config.ini`.
-
-5. Reboot the system to apply the changes.
+4. Reboot the system to apply the changes.
 
 See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery driver?](https://github.com/Louisvdw/dbus-serialbattery/discussions/969#discussioncomment-10987091).
 
