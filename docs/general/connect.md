@@ -220,6 +220,37 @@ See also [JK BMS JK-B2A8S20P RS-485 port / connector](https://github.com/Louisvd
 
 See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery driver?](https://github.com/Louisvdw/dbus-serialbattery/discussions/969#discussioncomment-10987091).
 
+
+## JKBMS PB Model (also know as JK Inverter BMS) CAN Connection
+
+> 🌼🔗 For connecting one oder more devices via CAN-BUS 👇
+
+1. Give each battery a unique device address using the jumper on the front. Then specify the device addresses in the `config.ini` at the `DEVICE_ADDRESSES` parameter. 
+
+   For example, if you are using three batteries (battery 1 dip switches: `1: ON, rest off`, battery 2 dip switches: `1: OFF, 2: ON, rest off`, battery 3 dip switches: `1: ON, 2: ON, rest off`) the parameter would be `DEVICE_ADDRESSES = 0x01, 0x02, 0x03`.
+
+   | Dip switch position | device address | Dip switch position | device address |
+   | :---:               | :---:          | :---:               | :---:          |
+   | `1 2 3 4`           |                | `1 2 3 4`           |                |
+   | `_ _ _ _`           | `0x00`         | `_ _ _ ‾`           | `0x08`         |
+   | `‾ _ _ _`           | `0x01`         | `‾ _ _ ‾`           | `0x09`         |
+   | `_ ‾ _ _`           | `0x02`         | `_ ‾ _ ‾`           | `0x0A`         |
+   | `‾ ‾ _ _`           | `0x03`         | `‾ ‾ _ ‾`           | `0x0B`         |
+   | `_ _ ‾ _`           | `0x04`         | `_ _ ‾ ‾`           | `0x0C`         |
+   | `‾ _ ‾ _`           | `0x05`         | `‾ _ ‾ ‾`           | `0x0D`         |
+   | `_ ‾ ‾ _`           | `0x06`         | `_ ‾ ‾ ‾`           | `0x0E`         |
+   | `‾ ‾ ‾ _`           | `0x07`         | `‾ ‾ ‾ ‾`           | `0x0F`         |
+
+2. Use a [TYPE-A cable](https://www.victronenergy.com/live/battery_compatibility:can-bus_bms-cable#pin-out) to connect all batteries via the CAN
+
+   ![CAN Port in an EEL Box](../screenshots/jkbms-pb-can.png)
+
+3. In the JKBMS App ensure that the CAN Protocol is set to `JK BMS CAN Protocol (250K) V2.0` or `JK BMS CAN Protocol (500K) V2.0`.
+
+4. Reboot the system to apply the changes.
+
+See also [Is anyone using the new style JK inverter BMS with dbus-serialbattery driver?](https://github.com/Louisvdw/dbus-serialbattery/discussions/969#discussioncomment-10987091).
+
 ## Renogy
 
 > 🌼🔗 Only if you want to connect multiple Renogy BMS to the same RS485 adapter 👇
